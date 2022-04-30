@@ -1,0 +1,16 @@
+li{
+    background-color: yellow;
+}
+
+.done{
+    background-color: green;
+}
+
+.error_messange{
+    font-size: small;
+}
+
+input:invalid{
+    border: 2px solid red;
+    background-color: #d44545;;
+}
