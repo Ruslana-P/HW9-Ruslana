@@ -2,40 +2,37 @@ const buttonAdd = document.querySelector("#addNewToDO");
 const formListToDo = document.querySelector('#form_list_to_do');
 const listToDo = document.querySelector('.listToDo');
 const input = document.querySelector('#newToDo');
-const newToDo = document.querySelector('#newToDo').value;
 
 formListToDo.onsubmit =
     function(e){
         e.preventDefault();
     };
 
-input.addEventListener('change', function validation(){
-    const errorMessage = document.querySelector('.error_message');
+let check = function (){
+    let newToDo = document.querySelector('#newToDo').value;
     const regExp =  /^[a-zA-Z0-9]{2,25}$/g;
-    if (regExp.test(newToDo)){
+    return regExp.test(newToDo);
+}
+
+input.addEventListener('change', function validation (newToDo, regExp){
+    const errorMessage = document.querySelector('.error_message');
+    if (check()){
         console.log(true);
         input.classList.remove('invalid');
         errorMessage.innerText = " ";
-        return true;
     }
     else {
         console.log(false);
         input.classList.add('invalid');
         errorMessage.innerText = 'Your text is invalid. Please use only latin letters and numbers. You task can not be shorter that 2 and longer that 25 characters';
-        return false;
     }
 })
 
 buttonAdd.addEventListener('click', function (){
-    //const newToDo = document.querySelector('#newToDo').value;
-    //const regExp = /^[a-zA-Z0-9]+( [a-zA-Z0-9]+)*$/;
-    const regExp =  /^[a-zA-Z0-9]{2,25}$/g;
-    if (regExp.test(newToDo)){
+    if (check()){
         createNewLi()
         addButton()
-
     }
-
 })
 
 function createNewLi() {
@@ -48,6 +45,7 @@ function createNewLi() {
 
 function addButton (){
     let deleteButton = document.createElement('button');
+
     deleteButton.innerHTML = 'Delete';
     deleteButton.classList.add('delete_button');
     document.querySelector('li:last-child').after(deleteButton);
