@@ -10,7 +10,7 @@ li{
     font-size: small;
 }
 
-input:invalid{
+.invalid{
     border: 2px solid red;
     background-color: #d44545;;
 }
